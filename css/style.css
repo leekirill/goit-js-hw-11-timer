@@ -1,6 +1,7 @@
 * {
   font-size: 30px;
   font-family: "Oswald", sans-serif;
+  background-color: #1a1a1a;
 }
 
 .timer {
@@ -21,11 +22,12 @@
 
 .value {
   font-size: 60px;
+  color: #fff;
 }
 
 .label {
   display: flex;
   font-weight: 300;
   justify-content: center;
-  color: #aaa;
+  color: #666;
 }

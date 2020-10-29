@@ -1,25 +1,16 @@
-// /*
-//  * Оставшиеся дни: делим значение UTC на 1000 * 60 * 60 * 24, количество
-//  * миллисекунд в одном дне (миллисекунды * секунды * минуты * часы)
-//  */
-// const days = Math.floor(time / (1000 * 60 * 60 * 24));
 // class CountdownTimer {
-//   constructor({ selector }) {
-//     this._selector = {}
-//   }
-  
-//   _getRefs(root) {
-//     const refs = {}
+//   constructor({ selector, targetDate }) {
+//     this.selector = selector
+//     this.targetDate = targetDate
 //   }
 // }
-
 // const timer = new CountdownTimer({
 //   selector: '#timer-1',
 //   targetDate: new Date('Junary 1, 2021'),
 // });
 
-const valueRef = document.querySelectorAll(".value")
 
+const valueRef = document.querySelectorAll(".value")
 
 const intervarId = setInterval(() => {
   const refs = {
