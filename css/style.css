@@ -4,12 +4,20 @@
   background-color: #1a1a1a;
 }
 
-.timer {
+#timer-1 {
   display: flex;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(20%, -50%);
+}
+
+#timer-2 {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-120%, -50%);
 }
 
 .field:not(:last-child) {
