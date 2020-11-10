@@ -118,65 +118,130 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"index.js":[function(require,module,exports) {
-// class CountdownTimer {
-//   constructor({ selector, targetDate }) {
-//     this.selector = selector
-//     this.targetDate = targetDate
-//   }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var CountdownTimer = /*#__PURE__*/function () {
+  function CountdownTimer(_ref) {
+    var selector = _ref.selector,
+        targetDate = _ref.targetDate;
+
+    _classCallCheck(this, CountdownTimer);
+
+    this.selector = selector;
+    this.targetDate = targetDate;
+    this.start();
+  }
+
+  _createClass(CountdownTimer, [{
+    key: "start",
+    value: function start() {
+      var _this = this;
+
+      setInterval(function () {
+        var currentTime = Date.now();
+        var countDownTime = _this.targetDate - currentTime;
+
+        var remainingTime = _this.getTimeComponents(countDownTime);
+
+        _this.updateValue(remainingTime);
+      }, 1000);
+    }
+  }, {
+    key: "pad",
+    value: function pad(value) {
+      return String(value).padStart(2, "0");
+    }
+  }, {
+    key: "updateValue",
+    value: function updateValue(_ref2) {
+      var days = _ref2.days,
+          hours = _ref2.hours,
+          mins = _ref2.mins,
+          secs = _ref2.secs;
+      var clock = document.querySelector(this.selector);
+      var daysValue = clock.querySelector('span[data-value="days"]');
+      var hoursValue = clock.querySelector('span[data-value="hours"]');
+      var minsValue = clock.querySelector('span[data-value="mins"]');
+      var secsValue = clock.querySelector('span[data-value="secs"]');
+      daysValue.textContent = "".concat(days);
+      hoursValue.textContent = "".concat(hours);
+      minsValue.textContent = "".concat(mins);
+      secsValue.textContent = "".concat(secs);
+    }
+  }, {
+    key: "getTimeComponents",
+    value: function getTimeComponents(time) {
+      var days = this.pad(Math.floor(time / (1000 * 60 * 60 * 24)));
+      var hours = this.pad(Math.floor(time % (1000 * 60 * 60 * 24) / (1000 * 60 * 60)));
+      var mins = this.pad(Math.floor(time % (1000 * 60 * 60) / (1000 * 60)));
+      var secs = this.pad(Math.floor(time % (1000 * 60) / 1000));
+      return {
+        days: days,
+        hours: hours,
+        mins: mins,
+        secs: secs
+      };
+    }
+  }]);
+
+  return CountdownTimer;
+}();
+
+var timer = new CountdownTimer({
+  selector: "#timer-1",
+  targetDate: new Date("Junary 2, 2022")
+});
+var timer2 = new CountdownTimer({
+  selector: "#timer-2",
+  targetDate: new Date("Junary 2, 2021")
+}); // class CountdownTimer {
+//     constructor({selector, targetDate}) {
+//         this.selector = selector;
+//         this.targetDate = targetDate;
+//         this.start();
+//     }
+//     start() {
+//         setInterval(() => {
+//             const currentTime = Date.now();
+//             const deltaTime = this.targetDate - currentTime;
+//             const remainingTime = this.getTimeComponents(deltaTime);
+//             this.updateClockFace(remainingTime);
+//         }, 1000)
+//     }
+//     pad(value) {
+//         return String(value).padStart(2, '0');
+//     }
+//     getTimeComponents(time) {
+//     const days = this.pad(Math.floor(time / (1000 * 60 * 60 * 24)));
+//     const hours = this.pad(Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+//     const mins = this.pad(Math.floor((time % (1000 * 60 * 60)) / (1000 * 60)));
+//     const secs = this.pad(Math.floor((time % (1000 * 60)) / 1000));
+//         return { days, hours, mins, secs };
+//     }
+//     updateClockFace({ days, hours, mins, secs }) {
+//         const clock = document.querySelector(this.selector);
+//         const daysCount = clock.querySelector('span[data-value="days"]');
+//         const hoursCount = clock.querySelector('span[data-value="hours"]');
+//         const minsCount = clock.querySelector('span[data-value="mins"]');
+//         const secsCount = clock.querySelector('span[data-value="secs"]');
+//         daysCount.textContent = `${days}`;
+//         hoursCount.textContent = `${hours}`;
+//         minsCount.textContent = `${mins}`;
+//         secsCount.textContent = `${secs}`;
+//     }
 // }
 // const timer = new CountdownTimer({
 //   selector: '#timer-1',
-//   targetDate: new Date('Junary 1, 2021'),
+//   targetDate: new Date('Nov 17, 2020'),
 // });
-var valueRef = document.querySelectorAll(".value");
-var intervarId = setInterval(function () {
-  var refs = {
-    currentTime: Date.now(),
-    targetTime: new Date('Febrary 7, 2021')
-  };
-  var countDownTime = refs.targetTime - refs.currentTime;
-
-  var _getTimeComponents = getTimeComponents(countDownTime),
-      days = _getTimeComponents.days,
-      hours = _getTimeComponents.hours,
-      mins = _getTimeComponents.mins,
-      secs = _getTimeComponents.secs;
-
-  updateValue({
-    days: days,
-    hours: hours,
-    mins: mins,
-    secs: secs
-  });
-}, 1000); // clearInterval(intervarId)
-
-function updateValue(_ref) {
-  var days = _ref.days,
-      hours = _ref.hours,
-      mins = _ref.mins,
-      secs = _ref.secs;
-  valueRef[0].textContent = "".concat(days);
-  valueRef[1].textContent = "".concat(hours);
-  valueRef[2].textContent = "".concat(mins);
-  valueRef[3].textContent = "".concat(secs);
-}
-
-function pad(value) {
-  return String(value).padStart(2, '0');
-}
-
-function getTimeComponents(time) {
-  var days = pad(Math.floor(time / (1000 * 60 * 60 * 24)));
-  var hours = pad(Math.floor(time % (1000 * 60 * 60 * 24) / (1000 * 60 * 60)));
-  var mins = pad(Math.floor(time % (1000 * 60 * 60) / (1000 * 60)));
-  var secs = pad(Math.floor(time % (1000 * 60) / 1000));
-  return {
-    days: days,
-    hours: hours,
-    mins: mins,
-    secs: secs
-  };
-}
+// const timer2 =new CountdownTimer({
+//   selector: '#timer-2',
+//   targetDate: new Date('Nov 17, 2022')
+// })
 },{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -205,7 +270,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61227" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51106" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
