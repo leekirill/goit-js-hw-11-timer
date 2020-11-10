@@ -52,12 +52,12 @@ class CountdownTimer {
 
 const timer = new CountdownTimer({
     selector: '#timer-1',
-    targetDate: new Date('Junary 2, 2023'),
+    targetDate: new Date('Junary 2, 2024'),
 });
 
 const timer2 = new CountdownTimer({
     selector: '#timer-2',
-    targetDate: new Date('Junary 2, 2021'),
+    targetDate: new Date('Junary 2, 2022'),
 });
 
 // class CountdownTimer {
